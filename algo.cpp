@@ -1,5 +1,6 @@
 #include "algo.h"
 #include <iostream>
+#include <iomanip>
 
 int findGcd(int a, int b)
 {
@@ -12,7 +13,23 @@ int findGcd(int a, int b)
     u3 = a;
     v3 = b;
     q = 0;
-    std::cout <<u1 <<" "<<v1<<" "<<u2<< " "<<v2<<" "<<u3<<" "<<v3<<" "<<q<< "\n";
+    std::cout << "finding gcd of " << a << " and " << b << "\n";
+    std::cout
+        << "| " << std::setw(10) << "u1"
+        << "| " << std::setw(10) << "v1"
+        << "| " << std::setw(10) << "u2"
+        << "| " << std::setw(10) << "v2"
+        << "| " << std::setw(10) << "u3"
+        << "| " << std::setw(10) << "v3"
+        << "| " << std::setw(10) << "q" << "|\n";
+    std::cout
+        << "| " << std::setw(10) << u1
+        << "| " << std::setw(10) << v1
+        << "| " << std::setw(10) << u2
+        << "| " << std::setw(10) << v2
+        << "| " << std::setw(10) << u3
+        << "| " << std::setw(10) << v3
+        << "| " << std::setw(10) << q << "|\n";
     
     while(v3 != 0)
     {
@@ -26,7 +43,14 @@ int findGcd(int a, int b)
         v1 = oldu1 - (q * v1);
         v2 = oldu2 - (q * v2);
         v3 = oldu3 - (q * v3);
-        std::cout <<u1 <<" "<<v1<<" "<<u2<< " "<<v2<<" "<<u3<<" "<<v3<<" "<<q<< "\n";
+        std::cout
+        << "| " << std::setw(10) << u1
+        << "| " << std::setw(10) << v1
+        << "| " << std::setw(10) << u2
+        << "| " << std::setw(10) << v2
+        << "| " << std::setw(10) << u3
+        << "| " << std::setw(10) << v3
+        << "| " << std::setw(10) << q << "|\n";
     }
 
     std::cout << "gcd is " << u3 << "\n";
