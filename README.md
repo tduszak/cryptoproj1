@@ -17,6 +17,17 @@ $$
 
 ---
 
+## Group Members
+
+**Group 5**
+
+- Nguyen Nguyen
+- Spencer Steadman
+- Tanishqa Gautam
+- Tyler Duszak
+
+---
+
 ## Project Objective
 
 For each required pair of positive integers $a$ and $b$, the program:
@@ -24,7 +35,8 @@ For each required pair of positive integers $a$ and $b$, the program:
 - creates the Division Algorithm table used in the course notes
 - computes $\gcd(a,b)$
 - finds the corresponding Bézout coefficients $x$ and $y$
-- prints the results in a formatted table
+- verifies that $ax+by=\gcd(a,b)$
+- prints the results in a readable format for the final PDF output
 
 The table follows the class notation
 
@@ -58,20 +70,62 @@ cryptoproj1/
 ├── algo.h
 ├── build/
 ├── CMakeLists.txt
+├── division_algorithm
+├── division_algorithm.cpp
 ├── main.cpp
-└── README.md
+├── project1_output_with_names.txt
+├── project1_output.pdf
+├── project1_output.txt
+├── README.md
+└── submission/
+    ├── division_algorithm.cpp
+    └── project1_output.pdf
 ```
+
+### `division_algorithm.cpp`
+
+The final standalone source file used for submission.
+
+It contains:
+
+- the Division Algorithm implementation
+- the three required input pairs
+- the group information
+- formatted table output
+- the gcd and Bézout coefficients
+- verification of $ax+by=\gcd(a,b)$
+
+This file combines the functionality of the original `algo.cpp`, `algo.h`, and `main.cpp` into one source file.
+
+### `project1_output.pdf`
+
+The final typed PDF output containing:
+
+- all group member names
+- all three Division Algorithm tables
+- the gcd for each pair
+- the corresponding values of $x$ and $y$
+- verification of each linear combination
+
+### `submission/`
+
+Contains exactly the two files intended for Canvas submission:
+
+```text
+submission/
+├── division_algorithm.cpp
+└── project1_output.pdf
+```
+
+These files should be uploaded separately and should not be zipped.
+
+---
+
+## Original C++ Project Files
 
 ### `algo.cpp`
 
-Contains the Division Algorithm implementation.
-
-It:
-
-- initializes the $u$, $v$, and $q$ values
-- generates each row of the table
-- computes the gcd
-- finds the Bézout coefficients $x$ and $y$
+Contains the original implementation of the Division Algorithm and table generation.
 
 ### `algo.h`
 
@@ -79,46 +133,48 @@ Contains the declaration of the `findGcd()` function.
 
 ### `main.cpp`
 
-Runs `findGcd()` for the three required integer pairs.
+Runs the original `findGcd()` implementation on the three required pairs.
 
 ### `CMakeLists.txt`
 
-Contains the CMake configuration used to compile the project.
+Contains the CMake configuration for the original multi-file version of the project.
 
 ### `build/`
 
 Generated automatically by CMake.
 
-It contains the compiled executable and other build files and is not part of the main source code.
+It contains the compiled executable, object files, cache files, Makefiles, and other build information.
+
+The files inside `build/` are generated files and do not need to be edited manually.
 
 ---
 
 ## Division Algorithm
 
-The program starts with
+The program begins with
 
 $$
-u_1 = 1,\qquad v_1 = 0
-$$
-
-$$
-u_2 = 0,\qquad v_2 = 1
+u_1=1,\qquad v_1=0
 $$
 
 $$
-u_3 = a,\qquad v_3 = b
+u_2=0,\qquad v_2=1
+$$
+
+$$
+u_3=a,\qquad v_3=b
 $$
 
 and
 
 $$
-q = 0.
+q=0.
 $$
 
 For each new row, the quotient is computed as
 
 $$
-q =
+q=
 \left\lfloor
 \frac{u_3}{v_3}
 \right\rfloor.
@@ -127,10 +183,10 @@ $$
 The previous $v$ values become the new $u$ values:
 
 $$
-u_i^{\text{new}} = v_i^{\text{old}}.
+u_i^{\text{new}}=v_i^{\text{old}}.
 $$
 
-The new $v$ values are then calculated by
+The new $v$ values are calculated by
 
 $$
 v_i^{\text{new}}
@@ -140,134 +196,142 @@ u_i^{\text{old}}
 qv_i^{\text{old}}.
 $$
 
-The process repeats until
+The process continues until
 
 $$
-v_3 = 0.
+v_3=0.
 $$
 
 At the final row,
 
 $$
-\gcd(a,b) = u_3,
+\gcd(a,b)=u_3,
 $$
 
 and the Bézout coefficients are
 
 $$
-x = u_1,\qquad y = u_2.
+x=u_1,\qquad y=u_2.
 $$
 
 Therefore,
 
 $$
-ax + by = \gcd(a,b).
+ax+by=\gcd(a,b).
 $$
 
 ---
 
-## Build
+## Build the Original CMake Project
 
-From the project directory, configure the project with CMake:
+Configure the project:
 
 ```bash
 cmake -S . -B build
 ```
 
-Then compile it:
+Compile it:
 
 ```bash
 cmake --build build
 ```
 
-A successful build creates the executable:
-
-```text
-build/cryptoproj1
-```
-
----
-
-## Run
-
-Run the compiled program with:
+Run it:
 
 ```bash
 ./build/cryptoproj1
 ```
 
-The program prints a complete Division Algorithm table for each required pair.
+---
+
+## Build the Final Standalone Program
+
+The final submission source file can also be compiled directly:
+
+```bash
+g++ -std=c++17 division_algorithm.cpp -o division_algorithm
+```
+
+Run it normally:
+
+```bash
+./division_algorithm
+```
+
+Or save the complete program output to a text file:
+
+```bash
+./division_algorithm > project1_output.txt
+```
 
 ---
 
 ## Results
 
-The program produces the following final values.
-
 ### Pair 1
 
 $$
-a = 768336,\qquad b = 78192
+a=768336,\qquad b=78192
 $$
 
 $$
-\gcd(a,b) = 48
+\gcd(a,b)=48
 $$
 
 with
 
 $$
-x = 236,\qquad y = -2319.
+x=236,\qquad y=-2319.
 $$
 
-Therefore,
+Verification:
 
 $$
-768336(236) + 78192(-2319) = 48.
+768336(236)+78192(-2319)=48.
 $$
 
 ### Pair 2
 
 $$
-a = 494752,\qquad b = 296864
+a=494752,\qquad b=296864
 $$
 
 $$
-\gcd(a,b) = 32
+\gcd(a,b)=32
 $$
 
 with
 
 $$
-x = 4637,\qquad y = -7728.
+x=4637,\qquad y=-7728.
 $$
 
-Therefore,
+Verification:
 
 $$
-494752(4637) + 296864(-7728) = 32.
+494752(4637)+296864(-7728)=32.
 $$
 
 ### Pair 3
 
 $$
-a = 17601969,\qquad b = 2364768
+a=17601969,\qquad b=2364768
 $$
 
 $$
-\gcd(a,b) = 483
+\gcd(a,b)=483
 $$
 
 with
 
 $$
-x = -1741,\qquad y = 12959.
+x=-1741,\qquad y=12959.
 $$
 
-Therefore,
+Verification:
 
 $$
-17601969(-1741) + 2364768(12959) = 483.
+17601969(-1741)+2364768(12959)=483.
 $$
 
 ---
@@ -277,41 +341,80 @@ $$
 For each pair, the program prints a table with the columns
 
 ```text
-u1    v1    u2    v2    u3    v3    q
+u1          v1          u2          v2          u3          v3           q
 ```
 
-followed by the final values of
+The final row has
 
 $$
-\gcd(a,b),\qquad x,\qquad y.
+v_3=0,
 $$
 
-The tables are then used to prepare the required PDF output for the project.
+so the program reports
+
+$$
+\gcd(a,b)=u_3,
+$$
+
+with
+
+$$
+x=u_1,\qquad y=u_2.
+$$
+
+It also prints a verification showing that
+
+$$
+ax+by=\gcd(a,b).
+$$
 
 ---
 
-## Submission
+## Create the PDF Output
 
-The project instructions require two separate, unzipped files:
-
-```text
-source_code_file
-output_file.pdf
-```
-
-The PDF output should include:
-
-- the names of all participating group members
-- all three Division Algorithm tables
-- the value of $\gcd(a,b)$ for each pair
-- the corresponding values of $x$ and $y$
-- clearly formatted typed output
-```
-
-One thing I especially changed is the **Build** section. Since you're actually running:
+The program output can be saved with
 
 ```bash
-cmake -S . -B build
-cmake --build build
-./build/cryptoproj1
+./division_algorithm > project1_output.txt
 ```
+
+On macOS, the text output can be converted to PDF with
+
+```bash
+cupsfilter -m application/pdf project1_output.txt > project1_output.pdf
+```
+
+The generated PDF can be checked with
+
+```bash
+file project1_output.pdf
+```
+
+and opened with
+
+```bash
+open project1_output.pdf
+```
+
+---
+
+## Final Submission
+
+The project instructions require two separate, unzipped files.
+
+The final submission files are:
+
+```text
+division_algorithm.cpp
+project1_output.pdf
+```
+
+A clean copy of both files is stored in:
+
+```text
+submission/
+├── division_algorithm.cpp
+└── project1_output.pdf
+```
+
+The files should be uploaded to Canvas individually rather than submitting the `submission/` folder as a ZIP archive.
