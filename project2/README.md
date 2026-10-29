@@ -4,7 +4,18 @@
 
 This directory prepares Project 2 without solving it. The C++17 scaffold reads the supplied ciphertext, validates uppercase A-Z input with optional whitespace, and reports the normalized character count. It does not calculate coincidence indices, recover a keyword, or decrypt text yet.
 
-Project 1 source, saved outputs, and `submission/` are preserved unchanged. Its Euclidean algorithm is not reused for Vigenere analysis.
+Project 1 source, saved outputs, and submission files are preserved under `../project1/` without content changes. Its Euclidean algorithm is not reused for Vigenere analysis. Return to the [repository overview](../README.md) for the complete layout.
+
+## Source Guide
+
+| File | Responsibility |
+| --- | --- |
+| `src/main.cpp` | Command-line arguments, error messages, and scaffold status |
+| `src/ciphertext.h` | Public contract for reading and validating ciphertext |
+| `src/ciphertext.cpp` | File I/O, whitespace handling, and uppercase input validation |
+| `data/ciphertext.txt` | Verified assignment input, separate from the code |
+
+Keep this small separation as analysis is added; do not add placeholder modules for unfinished algorithms.
 
 ## Requirements from the Assignment
 
@@ -47,7 +58,7 @@ Status: input validated; cryptanalysis is not implemented.
 The input path is required and resolves relative to the current working directory. Missing, empty, unreadable, lowercase, or nonalphabetic input is rejected; whitespace is allowed. The source can also be compiled without CMake:
 
 ```bash
-c++ -std=c++17 project2/src/main.cpp -o project2_vigenere
+c++ -std=c++17 project2/src/main.cpp project2/src/ciphertext.cpp -o project2_vigenere
 ./project2_vigenere project2/data/ciphertext.txt
 ```
 
@@ -91,7 +102,7 @@ c++ -std=c++17 project2/src/main.cpp -o project2_vigenere
 ## Readiness Checks
 
 - A fresh CMake build produces all three executable targets.
-- `project1_submission` still reproduces `project1_output.txt` exactly.
+- `project1_submission` still reproduces `project1/output/project1_output.txt` exactly when checked from the repository root.
 - The scaffold accepts the supplied 1,260-letter ciphertext and rejects invalid input.
 - Generated build products and temporary reports do not appear as untracked files.
 - Project 2 is not considered complete until the numerical analysis, keyword recovery, decryption, roster, and PDF review are finished.
