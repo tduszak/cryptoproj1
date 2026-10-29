@@ -1,7 +1,13 @@
-# MATH 4175 — Cryptography Project 1
+# MATH 4175 — Cryptography Projects
 
-A C++ implementation of the Division Algorithm table from  
-**Virginia Tech MATH 4175: Cryptography**.
+C++17 coursework for **Virginia Tech MATH 4175: Cryptography**.
+
+- **Project 1:** Completed Division Algorithm implementation and preserved submission files.
+- **Project 2:** Vigenere cipher input scaffold and [implementation plan](project2/README.md). Cryptanalysis is not implemented yet.
+
+All build commands below run from the repository root. A C++17 compiler and CMake 3.10 or newer are required.
+
+## Project 1 — Division Algorithm
 
 The program computes
 
@@ -20,6 +26,8 @@ $$
 ## Group Members
 
 **Group 5**
+
+The following roster belongs to Project 1; confirm the participating students before preparing Project 2 output.
 
 - Nguyen Nguyen
 - Spencer Steadman
@@ -66,13 +74,18 @@ $$
 
 ```text
 cryptoproj1/
+├── .gitignore
 ├── algo.cpp
 ├── algo.h
-├── build/
 ├── CMakeLists.txt
-├── division_algorithm
 ├── division_algorithm.cpp
 ├── main.cpp
+├── project2/
+│   ├── README.md
+│   ├── data/
+│   │   └── ciphertext.txt
+│   └── src/
+│       └── main.cpp
 ├── project1_output_with_names.txt
 ├── project1_output.pdf
 ├── project1_output.txt
@@ -137,7 +150,7 @@ Runs the original `findGcd()` implementation on the three required pairs.
 
 ### `CMakeLists.txt`
 
-Contains the CMake configuration for the original multi-file version of the project.
+Builds the original multi-file program as `cryptoproj1`, the authoritative standalone Project 1 source as `project1_submission`, and the Project 2 scaffold as `project2_vigenere`.
 
 ### `build/`
 
@@ -145,7 +158,7 @@ Generated automatically by CMake.
 
 It contains the compiled executable, object files, cache files, Makefiles, and other build information.
 
-The files inside `build/` are generated files and do not need to be edited manually.
+The files inside `build/` are generated files and do not need to be edited manually. Build directories and compiled executables are ignored by Git; the Project 1 source and submission files remain tracked.
 
 ---
 
@@ -245,6 +258,18 @@ Run it:
 ---
 
 ## Build the Final Standalone Program
+
+The authoritative Project 1 submission source is `division_algorithm.cpp`; the older multi-file implementation is retained for reference. After the CMake build above, run the standalone version with:
+
+```bash
+./build/project1_submission
+```
+
+Verify that its output still matches the saved result:
+
+```bash
+./build/project1_submission | cmp - project1_output.txt
+```
 
 The final submission source file can also be compiled directly:
 
