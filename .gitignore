@@ -1,0 +1,8 @@
+.DS_Store
+/build/
+/build-*/
+/cmake-build-*/
+/division_algorithm
+/project1_submission
+/project2_vigenere
+/project2/output/
