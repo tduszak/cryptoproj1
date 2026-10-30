@@ -24,4 +24,8 @@ add_executable(project2_vigenere
     project2/src/ciphertext.cpp
     project2/src/coincidence.h
     project2/src/coincidence.cpp
+    project2/src/frequency.h
+    project2/src/frequency.cpp
+    project2/src/decrypt.h
+    project2/src/decrypt.cpp
 )

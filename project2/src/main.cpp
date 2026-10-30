@@ -1,5 +1,7 @@
 #include "ciphertext.h"
 #include "coincidence.h"
+#include "frequency.h"
+#include "decrypt.h"
 
 #include <algorithm>
 #include <array>
@@ -86,8 +88,26 @@ int main(int argument_count, char* argument_values[])
         {
             std::cout << "The calculated indices do not show a strict preference for m = 7 near the English benchmark.\n";
         }
-        std::cout << "This is statistical support, not proof of the key length or keyword.\n"
-                  << "Status: Part 1 complete; keyword recovery and decryption are not implemented.\n";
+        
+        std::cout << "This is statistical support, not proof of the key length or keyword.\n";
+
+        // part 2: begin by splitting the ciphertext into seven substrings
+        const std::vector<std::string> substrings = project2::split_substrings(ciphertext, 7);
+
+        // generates a frequency table
+        project2::print_frequency_table(substrings);
+
+        // finds the most likely keyword
+        const std::string keyword = project2::find_keyword(substrings);
+
+        std::cout << "\nRecovered keyword: " << keyword << '\n';
+
+        // part 2: use the recovered keyword to decrypt the text
+        const std::string plaintext = project2::decrypt(ciphertext, keyword);
+
+        std::cout << "\nPart 3: Decrypted Plaintext\n\n";
+        std::cout << plaintext << '\n';
+
     }
     catch (const std::exception& error)
     {
